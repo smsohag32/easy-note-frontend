@@ -6,11 +6,15 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import navLinkData from "../utils/navLinksData";
 
 const drawerWidth = 280;
@@ -28,12 +32,16 @@ const MainLayout = (props) => {
       <Divider />
       <List>
         {navLinkData.map((item, index) => (
-          <li key={item.id}>
-            <NavLink exact to={item.pathname} className="">
-              {item.icon && <span className="mr-2">{item.icon}</span>}
-              {item.name}
-            </NavLink>
-          </li>
+          <Link key={item.id} to={item.pathname}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon className="text-white">
+                  <span className="text-white">{item.icon}</span>
+                </ListItemIcon>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />

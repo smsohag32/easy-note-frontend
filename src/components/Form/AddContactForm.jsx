@@ -13,17 +13,19 @@ import { AccountCircle } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import useContacts from "../../hooks/useContacts";
+import { toast } from "react-toastify";
 
 export default function AddContactForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const { refetch } = useContacts();
 
   const onSubmit = (data) => {
     axios
       .post(`https://easy-note-backend.vercel.app/api/contacts`, data)
       .then((data) => {
-        alert(data.data);
+        toast.success("New Contact add success!");
         refetch();
+        reset();
       });
   };
 
@@ -40,7 +42,7 @@ export default function AddContactForm() {
           type="text"
           startAdornment={
             <InputAdornment position="start">
-              <AccountCircle />
+              <AccountCircle className="text-blue-500" />
             </InputAdornment>
           }
         />
@@ -53,7 +55,7 @@ export default function AddContactForm() {
           {...register("phone")}
           startAdornment={
             <InputAdornment position="start">
-              <LocalPhoneIcon />
+              <LocalPhoneIcon className="text-blue-500" />
             </InputAdornment>
           }
         />
@@ -65,7 +67,7 @@ export default function AddContactForm() {
           {...register("email")}
           startAdornment={
             <InputAdornment position="start">
-              <EmailIcon />
+              <EmailIcon className="text-blue-500" />
             </InputAdornment>
           }
         />
@@ -75,9 +77,10 @@ export default function AddContactForm() {
         <Input
           {...register("designation")}
           id="input-with-icon-adornment"
+          type="text"
           startAdornment={
             <InputAdornment position="start">
-              <AddReactionIcon />
+              <AddReactionIcon className="text-blue-500" />
             </InputAdornment>
           }
         />

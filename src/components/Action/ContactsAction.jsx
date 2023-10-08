@@ -23,7 +23,7 @@ export default function ContactsAction({ row }) {
     );
     if (res?.data?.message.length > 0) {
       handleClose();
-      refetch;
+      refetch();
     }
   };
   const handleEdit = async (item) => {
