@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import SettingsIcon from "@mui/icons-material/Settings";
 import axios from "axios";
 import useContacts from "../../hooks/useContacts";
+import { toast } from "react-toastify";
 export default function ContactsAction({ row }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { refetch } = useContacts();
@@ -24,6 +25,7 @@ export default function ContactsAction({ row }) {
     if (res?.data?.message.length > 0) {
       handleClose();
       refetch();
+      toast.warning("Contact deleted!!!");
     }
   };
   const handleEdit = async (item) => {
